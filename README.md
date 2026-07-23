@@ -8,8 +8,6 @@ Conventional agricultural UAV workflows often require a single drone to complete
 * **Scan UAV:** Performs autonomous field scanning and onboard crop anomaly detection using an NVIDIA Jetson Orin and an HSV-based computer vision pipeline.
 * **Spray UAV:** Receives target GPS coordinates in real time, autonomously navigates to the detected locations, and performs precision spraying using vision-assisted target centering.
 
-The system enables simultaneous scanning and spraying, reducing idle time while improving spraying accuracy. Real-world experiments demonstrated reliable inter-UAV communication, accurate target localization, and centimeter-level final positioning for precision chemical application, making the framework suitable for scalable precision agriculture.
-
 ## Drones Design
 ### Scan Drone
 The scanning drone frame is built using two 3D-printed ABS plates connected by 16 mm square carbon-fibre rods. A stainless steel plate is added at high-load regions to handle structural stresses during flight. An F550 landing gear is used to support safe takeoff and landing. The frame includes custom 3D-printed mounts for mounting the camera and flight computer, ensuring proper alignment and mechanical support.
@@ -121,7 +119,7 @@ The Scan Drone captures RGB images through an **ND (Neutral Density) filter**, w
 </table>
 
 ## Results
-The onboard detection pipeline achieved approximately 95% recall (true positives among all detections) with minimal false positives. Decentralized communication between UAVs was reliable up to 300 meters, yielding an initial localization accuracy of 2 to 3 meters. After centering, the visual controller successfully refined the spraying drone positioning from the initial 2 to 3 meters down to a steady-state error of just 1–10 cm, providing the precision necessary for precision chemical application. These results validate the proposed dual-UAV architecture as a scalable, autonomous solution for precision agricultural intervention.
+The proposed dual-UAV system was successfully validated through real-world experiments on a **2-acre agricultural field**. The onboard vision pipeline achieved **~95% detection recall** with minimal false positives under varying lighting conditions. Reliable decentralized communication was maintained between the Scan Drone and Spray Drone over distances of **up to 300 m**, providing an initial target localization accuracy of **2–3 m**. Using the vision-assisted target centering algorithm, the Spray Drone further refined its position to a **steady-state error of 1–10 cm**, enabling highly accurate and efficient precision chemical application.
 <table align="center">
   <tr>
     <td align="center" width="33%">
