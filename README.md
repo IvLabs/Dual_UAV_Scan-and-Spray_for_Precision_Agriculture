@@ -142,8 +142,8 @@ The onboard detection pipeline achieved approximately 95% recall (true positives
 ## Installation
 ### 1. Clone the Repository
 ```bash
-git clone https://github.com/<username>/<repository-name>.git
-cd <repository-name>
+git clone https://github.com/IvLabs/Dual_UAV_Scan-and-Spray_for_Precision_Agriculture.git
+cd ~
 ```
 
 ### 2. Create a Virtual Environment (Optional but Recommended)
