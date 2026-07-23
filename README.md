@@ -1,12 +1,20 @@
 # Dual UAV Scan-and-Spray for Precision Agriculture
 ## Abstract
-Precision agriculture relies mainly on site-specific crop management to minimize agrochemical waste. However, existing UAV systems typically depend on sequential, single-drone workflows and offline data processing, causing significant delays between disease detection and treatment. To address this, the paper presents an autonomous, decentralized dual-UAV framework for real-time crop monitoring and targeted spraying. The system integrates a lightweight scanningUAV equipped with edge-computing (NVIDIA Jetson Orin) and a high-payload spraying UAV, operating synchronously to eliminate idle hovering and reduce mission time. The scanning UAV utilizes an onboard Hue-Saturation- Value (HSV) color segmentation pipeline, enhanced by dualregion masking and a Neutral Density (ND) filter, to ensure robust target identification under varying sunlight. Upon detection, a photogrammetric geotagging algorithm instantly translates 2D image coordinates into global GPS positions and dynamically transmits these targets to the sprayer. To ensure accurate chemical deposition, the spraying UAV then employs a vision-assisted centering control algorithm to compensate for wind drift and GPS inaccuracies. The complete framework was validated through real-world experiments on a 2-acre agricultural field. The onboard detection pipeline achieved approximately 95% recall (true positives among all detections) with minimal false positives. Decentralized communication between UAVs was reliable up to 300 meters, yielding an initial localization accuracy of 2 to 3 meters. After centering, the visual controller successfully refined the spraying drone positioning from the initial 2 to 3 meters down to a steady-state error of just 1–10 cm, providing the precision necessary for precision chemical application. These results validate the proposed dual-UAV architecture as a scalable, autonomous solution for precision agricultural intervention.
+This project presents an autonomous, decentralized dual-UAV framework for real-time crop monitoring and targeted spraying. The system integrates a lightweight scanning UAV equipped with edge-computing (NVIDIA Jetson Orin) and a high-payload spraying UAV, operating synchronously to eliminate idle hovering and reduce mission time. The scanning UAV utilizes an onboard Hue-Saturation- Value (HSV) color segmentation pipeline, enhanced by dual region masking and a Neutral Density (ND) filter, to ensure robust target identification under varying sunlight. Upon detection, a photogrammetric geotagging algorithm instantly translates 2D image coordinates into global GPS positions and dynamically transmits these targets to the sprayer. To ensure accurate chemical deposition, the spraying UAV then employs a vision-assisted centering control algorithm to compensate for wind drift and GPS inaccuracies. The complete framework was validated through real-world experiments on a 2-acre agricultural field.
+
+## Overview
+Conventional agricultural UAV workflows often require a single drone to complete scanning and spraying sequentially or rely on offline image processing, increasing mission time and reducing operational efficiency. This project addresses these limitations by introducing a decentralized dual-drone system consisting of:
+
+* **Scan UAV:** Performs autonomous field scanning and onboard crop anomaly detection using an NVIDIA Jetson Orin and an HSV-based computer vision pipeline.
+* **Spray UAV:** Receives target GPS coordinates in real time, autonomously navigates to the detected locations, and performs precision spraying using vision-assisted target centering.
+
+The system enables simultaneous scanning and spraying, reducing idle time while improving spraying accuracy. Real-world experiments demonstrated reliable inter-UAV communication, accurate target localization, and centimeter-level final positioning for precision chemical application, making the framework suitable for scalable precision agriculture.
 
 ## Drones Design
 ### Scan Drone
 The scanning drone frame is built using two 3D-printed ABS plates connected by 16 mm square carbon-fibre rods. A stainless steel plate is added at high-load regions to handle structural stresses during flight. An F550 landing gear is used to support safe takeoff and landing. The frame includes custom 3D-printed mounts for mounting the camera and flight computer, ensuring proper alignment and mechanical support.
 ### Spray Drone
-The spraying drone frame is constructed using carbon-fiber rods positioned between two carbon-fiber plates. The propulsion system consists of X6 motors powered by two 6S batteries connected in series. The landing gear is built using aluminium rods with custom mounts, providing ground clearance and structural support. A 10-litre pesticide tank is mounted between the landing gear legs. The drone is equipped with a [adaptive dual-nozzle spraying system](https://github.com/HarshalKolhe02/Adaptive-Dual-Nozzle-Sprayer), allowing selection between different spray patterns during operation.
+The spraying drone frame is constructed using carbon-fiber rods positioned between two carbon-fiber plates. The propulsion system consists of X6 motors powered by two 6S batteries connected in series. The landing gear is built using aluminium rods with custom mounts, providing ground clearance and structural support. A 10-litre pesticide tank is mounted between the landing gear legs.
 <table align="center">
   <tr>
     <td align="center" width="50%">
@@ -35,7 +43,10 @@ The spraying drone frame is constructed using carbon-fiber rods positioned betwe
   </tr>
 </table>
 
-## System Design
+## System Architecture
+### Spraying Mechanism
+The spraying system was designed to support both precision and wide-area applications using a dual-nozzle configuration. Solid-cone axial-flow nozzles were selected because they provide uniform droplet distribution and effective canopy penetration. A 45° cone-angle nozzle was used for precision spraying, while a 120° cone-angle nozzle provided wider area coverage. The nozzles were mounted on opposite ends of the landing gear and oriented inward to ensure accurate spraying at the center of the target plant. It is also equipped with an [adaptive dual-nozzle spraying system](https://github.com/HarshalKolhe02/Adaptive-Dual-Nozzle-Sprayer), enabling dynamic selection between different spray patterns during operation. The spraying maneuver is controlled using a custom PCB controlled using a Raspberry Pi 5, which actuates relays for nozzle selection and pump control. The system integrates both manual triggering via an RC switch and autonomous operation based on geotagged target location received from the scan drone. On reaching the target location, the onboard controller deploys the selected nozzle followed by the pump to initiate spraying.
+
 <table align="center">
   <tr>
     <td align="center" width="35%">
@@ -49,7 +60,14 @@ The spraying drone frame is constructed using carbon-fiber rods positioned betwe
   </tr>
 </table>
 
-<br>
+### Electronics Architecture
+The dual-UAV system consists of two independently operating drones, each designed for a specific task while maintaining real-time communication.
+
+- **Scan Drone:** Powered by an **NVIDIA Jetson Orin Nano** for onboard image processing and target detection. A **CubeOrange+** flight controller manages autonomous navigation, while a **Here4 GPS** module provides global positioning. The **SIYI A8 Mini** gimbal stabilizes the camera for accurate image acquisition, and **433 MHz** and **915 MHz** telemetry modules enable ground station and inter-UAV communication.
+
+- **Spray Drone:** Built around a **Raspberry Pi 5** for mission control and spray management. A **custom relay PCB** controls the pump and dual solenoid valves for adaptive nozzle selection. Navigation is handled by the **CubeOrange+** flight controller with a **Here4 GPS** module, while the **SIYI A8 Mini** provides vision-assisted target centering for centimeter-level spraying accuracy. Communication is maintained through **433 MHz** and **915 MHz** telemetry links.
+
+This distributed architecture enables simultaneous crop monitoring and precision spraying, reducing mission time while ensuring reliable autonomous operation.
 
 <table align="center">
   <tr>
@@ -64,7 +82,13 @@ The spraying drone frame is constructed using carbon-fiber rods positioned betwe
   </tr>
 </table>
 
+### Communication Architecture
+The dual-UAV system uses a **433 MHz telemetry link** for direct communication between the **Scan Drone** and **Spray Drone**, enabling real-time transmission of target coordinates. Both drones are independently connected to the **Ground Station** via **915 MHz telemetry**, allowing simultaneous mission monitoring, status updates, and manual intervention when required.
+
 ## System Algorithm
+### Lawn Mower
+The Scan Drone follows a **Lawn Mower path planning algorithm**, where it traverses the field in parallel back-and-forth lines to ensure complete coverage with minimal overlap. This systematic coverage pattern improves scanning efficiency while reducing flight time and energy consumption.
+
 <table align="center">
   <tr>
     <td align="center" width="50%">
@@ -74,6 +98,7 @@ The spraying drone frame is constructed using carbon-fiber rods positioned betwe
   </tr>
 </table>
 
+### Detection and Vision pipeline
 <table align="center">
   <tr>
     <td align="center" width="50%">
@@ -84,6 +109,7 @@ The spraying drone frame is constructed using carbon-fiber rods positioned betwe
 </table>
 
 ## Results
+The onboard detection pipeline achieved approximately 95% recall (true positives among all detections) with minimal false positives. Decentralized communication between UAVs was reliable up to 300 meters, yielding an initial localization accuracy of 2 to 3 meters. After centering, the visual controller successfully refined the spraying drone positioning from the initial 2 to 3 meters down to a steady-state error of just 1–10 cm, providing the precision necessary for precision chemical application. These results validate the proposed dual-UAV architecture as a scalable, autonomous solution for precision agricultural intervention.
 <table align="center">
   <tr>
     <td align="center" width="33%">
@@ -100,3 +126,17 @@ The spraying drone frame is constructed using carbon-fiber rods positioned betwe
     </td>
   </tr>
 </table>
+
+## Contributors
+* Spruha Kshirsagar
+* Rajasi Deshmukh
+* Harshal Kolhe
+* Samiron Biswas
+* Mrunmayee Limaye
+* Kumar Ayush
+* Sanchet Dhalwar
+* Ishani Khaty
+* Abhinav Anand
+* Sunil Watgule
+* Vishnu Swaminathan
+* Tarun Kayala
