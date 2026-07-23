@@ -139,6 +139,30 @@ The onboard detection pipeline achieved approximately 95% recall (true positives
   </tr>
 </table>
 
+## Installation
+### 1. Clone the Repository
+```bash
+git clone https://github.com/<username>/<repository-name>.git
+cd <repository-name>
+```
+
+### 2. Create a Virtual Environment (Optional but Recommended)
+**Linux/macOS**
+```bash
+python3 -m venv venv
+source venv/bin/activate
+```
+**Windows**
+```bash
+python -m venv venv
+venv\Scripts\activate
+```
+
+### 3. Install Dependencies
+```bash
+pip install -r requirements.txt
+```
+
 ## Contributors
 * Spruha Kshirsagar
 * Rajasi Deshmukh
