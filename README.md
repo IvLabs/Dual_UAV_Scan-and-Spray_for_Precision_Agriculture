@@ -193,3 +193,8 @@ Use **Mission Planner** to monitor both UAVs through the **915 MHz telemetry** l
 * Sunil Watgule
 * Vishnu Swaminathan
 * Tarun Kayala
+
+## Publication
+The full research paper for this project will be made available here after publication.
+
+**Paper:** *Coming Soon*
