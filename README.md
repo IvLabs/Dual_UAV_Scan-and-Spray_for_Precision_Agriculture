@@ -163,6 +163,25 @@ venv\Scripts\activate
 pip install -r requirements.txt
 ```
 
+## Getting Started
+### 1. Start the Scan Drone
+On the Scan Drone (NVIDIA Jetson Orin Nano), execute:
+
+```bash
+./run_system.sh
+```
+This script initializes the onboard vision pipeline, establishes telemetry communication, and starts the autonomous scanning mission.
+
+### 2. Start the Spray Drone
+On the Spray Drone (Raspberry Pi 5), execute:
+```bash
+python3 main.py
+```
+The Spray Drone receives target GPS coordinates from the Scan Drone, autonomously navigates to each target, performs vision-assisted target centering, and executes precision spraying.
+
+### 3. Monitor the Mission
+Use **Mission Planner** to monitor both UAVs through the **915 MHz telemetry** link.
+
 ## Contributors
 * Spruha Kshirsagar
 * Rajasi Deshmukh
