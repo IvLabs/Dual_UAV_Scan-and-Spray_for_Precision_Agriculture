@@ -3,7 +3,6 @@
 Precision agriculture relies mainly on site-specific crop management to minimize agrochemical waste. However, existing UAV systems typically depend on sequential, single-drone workflows and offline data processing, causing significant delays between disease detection and treatment. To address this, the paper presents an autonomous, decentralized dual-UAV framework for real-time crop monitoring and targeted spraying. The system integrates a lightweight scanningUAV equipped with edge-computing (NVIDIA Jetson Orin) and a high-payload spraying UAV, operating synchronously to eliminate idle hovering and reduce mission time. The scanning UAV utilizes an onboard Hue-Saturation- Value (HSV) color segmentation pipeline, enhanced by dualregion masking and a Neutral Density (ND) filter, to ensure robust target identification under varying sunlight. Upon detection, a photogrammetric geotagging algorithm instantly translates 2D image coordinates into global GPS positions and dynamically transmits these targets to the sprayer. To ensure accurate chemical deposition, the spraying UAV then employs a vision-assisted centering control algorithm to compensate for wind drift and GPS inaccuracies. The complete framework was validated through real-world experiments on a 2-acre agricultural field. The onboard detection pipeline achieved approximately 95% recall (true positives among all detections) with minimal false positives. Decentralized communication between UAVs was reliable up to 300 meters, yielding an initial localization accuracy of 2 to 3 meters. After centering, the visual controller successfully refined the spraying drone positioning from the initial 2 to 3 meters down to a steady-state error of just 1–10 cm, providing the precision necessary for precision chemical application. These results validate the proposed dual-UAV architecture as a scalable, autonomous solution for precision agricultural intervention.
 
 ## Drones Design
-
 <table align="center">
   <tr>
     <td align="center" width="50%">
@@ -11,7 +10,7 @@ Precision agriculture relies mainly on site-specific crop management to minimize
       <b>Fig. 1.</b> Scan Drone
     </td>
     <td align="center" width="50%">
-      <img src="https://github.com/user-attachments/assets/dcc0f3f4-c818-4dbb-88a2-42a3c07c1647" alt="CAD Model of Scan Drone" width="95%"><br>
+      <img src="https://github.com/user-attachments/assets/69f18848-175a-4154-8009-be545d072467" alt="CAD Model of Scan Drone" width="95%"><br>
       <b>Fig. 2.</b> CAD model of Scan Drone
     </td>
   </tr>
@@ -26,14 +25,13 @@ Precision agriculture relies mainly on site-specific crop management to minimize
       <b>Fig. 3.</b> Spraying Drone
     </td>
     <td align="center" width="50%">
-      <img src="https://github.com/user-attachments/assets/abf39b66-035e-43f7-a207-505614c10530" alt="CAD Model of Spraying Drone" width="95%"><br>
+      <img src="https://github.com/user-attachments/assets/0324a989-4368-4b44-ac92-8ea20aa75630" alt="CAD Model of Spraying Drone" width="95%"><br>
       <b>Fig. 4.</b> CAD model of Spraying Drone
     </td>
   </tr>
 </table>
 
 ## System Design
-
 <table align="center">
   <tr>
     <td align="center" width="35%">
@@ -48,7 +46,6 @@ Precision agriculture relies mainly on site-specific crop management to minimize
 </table>
 
 ## System Architecture
-
 <table align="center">
   <tr>
     <td align="center" width="50%">
@@ -80,6 +77,7 @@ Precision agriculture relies mainly on site-specific crop management to minimize
   </tr>
 </table>
 
+## Results
 <table align="center">
   <tr>
     <td align="center" width="33%">
@@ -92,8 +90,7 @@ Precision agriculture relies mainly on site-specific crop management to minimize
     </td>
     <td align="center" width="33%">
       <img src="https://github.com/user-attachments/assets/fcfeb478-3417-47ed-8c53-865be5dd93de" alt="Simulation Result 2" width="95%"><br>
-      <b>Fig. 12.c. </b> Yellow Detection (Testing 3)
+      <b>Fig. 11.c. </b> Yellow Detection (Testing 3)
     </td>
   </tr>
 </table>
-
