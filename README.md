@@ -99,6 +99,7 @@ The Scan Drone follows a **Lawn Mower path planning algorithm**, where it traver
 </table>
 
 ### Detection and Vision pipeline
+The onboard vision pipeline captures RGB images, converts them to HSV, performs color-based segmentation, filtering, and clustering, and computes the centroid of each detected target. The detected targets are then converted into coordinates for autonomous precision spraying.
 <table align="center">
   <tr>
     <td align="center" width="50%">
