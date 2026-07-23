@@ -124,15 +124,15 @@ The proposed dual-UAV system was successfully validated through real-world exper
   <tr>
     <td align="center" width="33%">
       <img src="https://github.com/user-attachments/assets/9e413136-6807-434a-acb6-f82480e5c352" alt="Simulation Result 2" width="95%"><br>
-      <b>Fig. 12.a. </b> Yellow Target Detection – Trial 1
+      <b>Fig. 12.a. </b> Yellow Target Detection Trial 1
     </td>
     <td align="center" width="33%">
       <img src="https://github.com/user-attachments/assets/5ed17dcf-d219-47fc-a3c1-a359e4159b49" alt="Simulation Result 2" width="95%"><br>
-      <b>Fig. 12.b. </b> Yellow Target Detection – Trial 2
+      <b>Fig. 12.b. </b> Yellow Target Detection Trial 2
     </td>
     <td align="center" width="33%">
       <img src="https://github.com/user-attachments/assets/fcfeb478-3417-47ed-8c53-865be5dd93de" alt="Simulation Result 2" width="95%"><br>
-      <b>Fig. 12.c. </b> Yellow Target Detection – Trial 3
+      <b>Fig. 12.c. </b> Yellow Target Detection Trial 3
     </td>
   </tr>
 </table>
