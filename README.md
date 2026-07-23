@@ -175,7 +175,7 @@ This script initializes the onboard vision pipeline, establishes telemetry commu
 ### 2. Start the Spray Drone
 On the Spray Drone (Raspberry Pi 5), execute:
 ```bash
-python3 main.py
+python3 Final_full_spray.py
 ```
 The Spray Drone receives target GPS coordinates from the Scan Drone, autonomously navigates to each target, performs vision-assisted target centering, and executes precision spraying.
 
