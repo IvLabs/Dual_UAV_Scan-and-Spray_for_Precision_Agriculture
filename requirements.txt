@@ -1,27 +1,18 @@
 Python >= 3.10
 
-External Dependencies
-
-numpy opencv-python scipy pyproj dronekit pymavlink shapely filelock
-
-Standard Library (included with Python)
-
+numpy
+opencv-python
+scipy
+pyproj
+dronekit
+pymavlink
+shapely
+filelock
 time
-
 threading
-
 socket
-
 struct
-
 datetime
-
 typing
-
 xml.etree.ElementTree
-
-Local Modules (must exist in the project)
-
-Telemetry_communication_agri.py
-
-pixel2gps.py
+future
