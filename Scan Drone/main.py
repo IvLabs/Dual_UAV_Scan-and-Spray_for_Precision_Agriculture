@@ -1,4 +1,3 @@
-# main.py
 import time
 import subprocess
 from LawnMower import LawnmowerMission
@@ -12,8 +11,6 @@ def start_yellow_detection():
     subprocess.Popen(["python3", "-m", "Yellow_detection"],cwd=".")
 
 def main():
-    print("===== NIDAR AUTONOMOUS SYSTEM START =====")
-    
     # 1. Set the gimbal
     try:
         
@@ -36,4 +33,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
