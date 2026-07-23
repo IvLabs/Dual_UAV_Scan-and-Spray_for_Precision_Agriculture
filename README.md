@@ -1,1 +1,1 @@
-# Dual_UAV_Scan-and-Spray_for_Precision_Agriculture
+# Dual UAV Scan-and-Spray for Precision Agriculture
