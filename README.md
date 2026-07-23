@@ -61,13 +61,7 @@ The spraying system was designed to support both precision and wide-area applica
 </table>
 
 ### Electronics Architecture
-The dual-UAV system consists of two independently operating drones, each designed for a specific task while maintaining real-time communication.
-
-- **Scan Drone:** Powered by an **NVIDIA Jetson Orin Nano** for onboard image processing and target detection. A **CubeOrange+** flight controller manages autonomous navigation, while a **Here4 GPS** module provides global positioning. The **SIYI A8 Mini** gimbal stabilizes the camera for accurate image acquisition, and **433 MHz** and **915 MHz** telemetry modules enable ground station and inter-UAV communication.
-
-- **Spray Drone:** Built around a **Raspberry Pi 5** for mission control and spray management. A **custom relay PCB** controls the pump and dual solenoid valves for adaptive nozzle selection. Navigation is handled by the **CubeOrange+** flight controller with a **Here4 GPS** module, while the **SIYI A8 Mini** provides vision-assisted target centering for centimeter-level spraying accuracy. Communication is maintained through **433 MHz** and **915 MHz** telemetry links.
-
-This distributed architecture enables simultaneous crop monitoring and precision spraying, reducing mission time while ensuring reliable autonomous operation.
+The dual-UAV system consists of two independently operating drones connected through real-time telemetry. The **Scan Drone** uses an NVIDIA Jetson Orin Nano for onboard crop detection, while the **Spray Drone** uses a Raspberry Pi 5 to control the spraying mechanism. Both drones are equipped with a CubeOrange+ flight controller, Here 4 GPS, SIYI A8 Mini gimbal, and telemetry modules for autonomous navigation, communication, and coordinated precision spraying.
 
 <table align="center">
   <tr>
@@ -99,12 +93,29 @@ The Scan Drone follows a **Lawn Mower path planning algorithm**, where it traver
 </table>
 
 ### Detection and Vision pipeline
-The onboard vision pipeline captures RGB images, converts them to HSV, performs color-based segmentation, filtering, and clustering, and computes the centroid of each detected target. The detected targets are then converted into coordinates for autonomous precision spraying.
+The Scan Drone captures RGB images through an **ND (Neutral Density) filter**, which minimizes uneven illumination, glare, and white spots caused by direct sunlight. The images are then converted to the HSV color space for robust color-based segmentation, followed by masking, filtering, and clustering to identify target regions. Finally, the centroid of each detected target is computed and converted into GPS coordinates for autonomous precision spraying.
 <table align="center">
   <tr>
     <td align="center" width="50%">
       <img src="https://github.com/user-attachments/assets/429b6e90-f870-49a7-8160-e355b50e0e85" alt="Simulation Result 2" width="95%"><br>
       <b>Fig. 10.</b> Vision Pipeline flowchart
+    </td>
+  </tr>
+</table>
+
+<table align="center">
+  <tr>
+    <td align="center" width="33%">
+      <img src="https://github.com/user-attachments/assets/7557d5ff-ac77-484e-b8ae-e0b6f2a6a95b" alt="Simulation Result 2" width="95%"><br>
+      <b>Fig. 11.a. </b> Simple Mask
+    </td>
+    <td align="center" width="33%">
+      <img src="https://github.com/user-attachments/assets/390c80d5-3acb-4fef-9458-3e1e8292a5f6" alt="Simulation Result 2" width="95%"><br>
+      <b>Fig. 11.b. </b> Simple Mask with ND filter
+    </td>
+    <td align="center" width="33%">
+      <img src="https://github.com/user-attachments/assets/81d440b0-915b-4181-b6fa-1fffe7afc2be" alt="Simulation Result 2" width="95%"><br>
+      <b>Fig. 11.c. </b> New upgraded mask with ND filter
     </td>
   </tr>
 </table>
@@ -115,15 +126,15 @@ The onboard detection pipeline achieved approximately 95% recall (true positives
   <tr>
     <td align="center" width="33%">
       <img src="https://github.com/user-attachments/assets/9e413136-6807-434a-acb6-f82480e5c352" alt="Simulation Result 2" width="95%"><br>
-      <b>Fig. 11.a. </b> Yellow Detection (Testing 1)
+      <b>Fig. 12.a. </b> Yellow Detection (Testing 1)
     </td>
     <td align="center" width="33%">
       <img src="https://github.com/user-attachments/assets/5ed17dcf-d219-47fc-a3c1-a359e4159b49" alt="Simulation Result 2" width="95%"><br>
-      <b>Fig. 11.b. </b> Yellow Detection (Testing 2)
+      <b>Fig. 12.b. </b> Yellow Detection (Testing 2)
     </td>
     <td align="center" width="33%">
       <img src="https://github.com/user-attachments/assets/fcfeb478-3417-47ed-8c53-865be5dd93de" alt="Simulation Result 2" width="95%"><br>
-      <b>Fig. 11.c. </b> Yellow Detection (Testing 3)
+      <b>Fig. 12.c. </b> Yellow Detection (Testing 3)
     </td>
   </tr>
 </table>
