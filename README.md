@@ -119,20 +119,20 @@ The Scan Drone captures RGB images through an **ND (Neutral Density) filter**, w
 </table>
 
 ## Results
-The proposed dual-UAV system was successfully validated through real-world experiments on a **2-acre agricultural field**. The onboard vision pipeline achieved **~95% detection recall** with minimal false positives under varying lighting conditions. Reliable decentralized communication was maintained between the Scan Drone and Spray Drone over distances of **up to 300 m**, providing an initial target localization accuracy of **2–3 m**. Using the vision-assisted target centering algorithm, the Spray Drone further refined its position to a **steady-state error of 1–10 cm**, enabling highly accurate and efficient precision chemical application.
+The proposed dual-UAV system was successfully validated through real-world experiments on a **2-acre agricultural field**. The onboard vision pipeline achieved **~95% detection recall** with minimal false positives under varying lighting conditions. Reliable decentralized communication was maintained between the Scan Drone and Spray Drone over distances of **up to 300 m**, providing an initial target localization accuracy of **2–3 m**. Using the vision-assisted target centering algorithm, the Spray Drone further refined its position to a **steady-state error of 5–20 cm**, enabling highly accurate and efficient precision chemical application.
 <table align="center">
   <tr>
     <td align="center" width="33%">
       <img src="https://github.com/user-attachments/assets/9e413136-6807-434a-acb6-f82480e5c352" alt="Simulation Result 2" width="95%"><br>
-      <b>Fig. 12.a. </b> Yellow Detection (Testing 1)
+      <b>Fig. 12.a. </b> Yellow Target Detection – Trial 1
     </td>
     <td align="center" width="33%">
       <img src="https://github.com/user-attachments/assets/5ed17dcf-d219-47fc-a3c1-a359e4159b49" alt="Simulation Result 2" width="95%"><br>
-      <b>Fig. 12.b. </b> Yellow Detection (Testing 2)
+      <b>Fig. 12.b. </b> Yellow Target Detection – Trial 2
     </td>
     <td align="center" width="33%">
       <img src="https://github.com/user-attachments/assets/fcfeb478-3417-47ed-8c53-865be5dd93de" alt="Simulation Result 2" width="95%"><br>
-      <b>Fig. 12.c. </b> Yellow Detection (Testing 3)
+      <b>Fig. 12.c. </b> Yellow Target Detection – Trial 3
     </td>
   </tr>
 </table>
