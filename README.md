@@ -197,4 +197,5 @@ Use **Mission Planner** to monitor both UAVs through the **915 MHz telemetry** l
 ## Publication
 The full research paper for this project will be made available here after publication.
 
-**Paper:** *Coming Soon*
+**Paper:** 
+R. Deshmukh\*, S. Biswas\*, K. Ayush, S. Watgule, A. Anand, T. Kayala, and A. Kothari, "Autonomous Parallel Scan-and-Spray Dual-UAV Collaboration for Precision Agriculture Using Onboard Vision," *ASME Letters in Translational Robotics*, 2026 (in press). \*Equal contribution.
